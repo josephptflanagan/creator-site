@@ -1,25 +1,48 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import Nav from './components/Nav';
+import Home from './components/Home';
+import Blog from './components/Blog';
+import Videos from './components/Videos';
+import Shop from './components/Shop';
+import About from './components/About';
+import Contact from './components/Contact';
+import Footer from "./components/Footer";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+    const [currentPage, handlePageChange] = useState('Home');
+
+    const renderPage = () => {
+        switch (currentPage) {
+            case 'Home':
+                return <Home />;
+            case 'Blog':
+                return <Blog />;
+            case 'Videos':
+                return <Videos />;
+            case 'Shop':
+                return <Shop />;
+            case 'About':
+                return <About />;
+            case 'Contact':
+                return <Contact />;
+            default:
+                return <Home />;
+        }
+    };
+
+    return (
+        <div className="page-container">
+            <Nav
+                currentPage={currentPage}
+                handlePageChange={handlePageChange}
+            ></Nav>
+            <main>
+                <div>{renderPage(currentPage)}</div>
+            </main>
+            <Footer />
+        </div>
+    );
 }
 
 export default App;
