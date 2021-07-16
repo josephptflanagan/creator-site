@@ -14,6 +14,7 @@ const typeDefs = gql`
 	type Video {
 		_id: ID
 		title: String
+		description: String
 		game: String
 		recorded: String
 		imgUrl: String

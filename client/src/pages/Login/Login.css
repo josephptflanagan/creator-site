@@ -1,0 +1,34 @@
+.signup-link-text {
+	color: var(--tertiary);
+}
+
+/* MEDIA QUERIES */
+@media only screen and (min-width: 1048px) {
+	.Login-form {
+		width: 25%;
+	}
+	.signup-link-text {
+		font-size: 1.2rem;
+	}
+}
+
+@media only screen and (max-width: 1048px) {
+	.Login-form {
+		width: 55%;
+	}
+}
+
+@media only screen and (max-width: 768px) {
+}
+
+@media only screen and (max-width: 400px) {
+	.Login-form {
+		width: 75%;
+	}
+	.d-inline {
+		font-size: 10px;
+	}
+	.signup-link-text {
+		font-size: 14px;
+	}
+}
