@@ -1,0 +1,13 @@
+.VideoGrid {
+    position: relative;
+}
+  
+.VideoGrid-tiles-container {
+    max-width: 80%;
+}
+  
+@media only screen and (max-width: 1048px) {
+    .VideoGrid-tiles-container {
+        max-width: 90%;
+    }
+}

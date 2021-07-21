@@ -1,9 +1,9 @@
-{/* THIS IS ALMOST ALL WRONG, NEED TO THING ABOUT SITE STRUCTURE*/ }
+{/* THIS IS ALMOST ALL WRONG, NEED TO THINK ABOUT SITE STRUCTURE*/ }
 
 import React, { useState, useEffect, useRef } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useParams } from 'react-router-dom'
-import { useQuery } from '@apollo/react-hooks'
+import { useQuery } from '../../components/EditVideo/node_modules/@apollo/react-hooks'
 
 import { QUERY_VIDEOS } from '../../utils/queries'
 import { updateVideos } from '../../utils/actions'
@@ -12,7 +12,7 @@ import { idbPromise } from '../../utils/helpers'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Card from 'react-bootstrap/Card'
-import Spinner from 'react-bootstrap/Spinner'
+import Spinner from '../../components/EditVideo/node_modules/react-bootstrap/Spinner'
 
 import EditDescription from '../../components/EditDescription/EditDescription'
 import EditGame from '../../components/EditGame/EditGame'
@@ -20,7 +20,7 @@ import EditGenres from '../../components/EditGenres/EditGenres'
 import EditRecorded from '../../components/EditRecorded/EditRecorded'
 import EditTags from '../../components/EditTags/EditTags'
 import EditThumbnailUrl from '../../components/EditThumbnailUrl/EditThumbnailUrl'
-import EditVideoUrl from '../../components/EditVideoUrl/EditVideoUrl'
+import EditVideo from '../../components/EditVideo/EditVideo'
 import NoThumbnail from '../../assets/noThumbnail.jpg'
 
 import { BiPlay } from 'react-icons/bi'
@@ -100,9 +100,9 @@ const VideoDash = () => {
 										<div className='w-100 bskr-bg-secondary pt-2 mb-2 rounded'>
 											<Card className='w-75 mx-auto bskr-bg-secondary'>
 												<Card.Body className='text-center'>
-													<EditVideoUrl />
+													<EditVideo />
 													<EditVideoTitle />
-													<EditVideodescription />
+													<EditVideoDescription />
 													<EditVideoTags />
 													<EditThumbnailUrl />
 													<EditVideoGenre />

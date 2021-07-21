@@ -1,0 +1,13 @@
+.EditRecorded .modal-title, .modal-body {
+    color: black;
+}
+
+.recorded-span {
+    font-size: 12px;
+}
+
+@media only screen and (max-width: 1048px) {
+	.EditRecorded-Btn {
+		width: 75% !important;
+	}
+}

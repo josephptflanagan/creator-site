@@ -1,0 +1,25 @@
+.VideoTile-tile {
+	width: 300px;
+	height: 300px;
+	position: relative;
+	overflow: hidden;
+}
+
+.VideoTile-tile:after {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+	background: rgba(0, 0, 0, 0.3);
+}
+
+.VideoTile-tile h3 {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translateX(-50%);
+	color: white;
+	z-index: 1;
+}

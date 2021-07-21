@@ -1,10 +1,10 @@
 import {
 	HYDRATE_GENRES,
 	UPDATE_CURRENT_GENRE,
-	UPDATE_USERS
+	UPDATE_VIDEOS
 } from '../types';
 
-// ACTION USERS -- functions that return actions.  now can dispatch() from component
+// ACTION VIDEOS -- functions that return actions.  now can dispatch() from component
 export const hydrateGenres = (genres) => {
 	return {
 		type  : HYDRATE_GENRES,
@@ -19,9 +19,9 @@ export const updateCurrentGenre = (genreId) => {
 	};
 };
 
-export const updateUsers = (users) => {
+export const updateVideos = (videos) => {
 	return {
-		type     : UPDATE_USERS,
-		users
+		type     : UPDATE_VIDEOS,
+		videos
 	};
 };
