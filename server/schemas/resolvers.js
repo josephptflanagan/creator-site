@@ -1,5 +1,5 @@
 const { AuthenticationError } = require('apollo-server-express')
-const { Video, Genre, Title,  } = require('../models')
+const { Video, Genre, Game, Tag, User } = require('../models')
 const { signToken } = require('../utils/auth')
 // const stripe = require('stripe')('sk_test_4eC39HqLyjWDarjtT1zdp7dc');
 const { awsSignup } = require('../utils/AWS')

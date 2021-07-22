@@ -9,7 +9,7 @@ const videoSchema = new Schema({
         required: true,
         trim: true
     },
-    game: {
+    description: {
         type: String,
         required: true,
         trim: true
@@ -19,7 +19,6 @@ const videoSchema = new Schema({
         required: true,
         trim: true
     },
-
     thumbnailUrl: {
         type: String,
         required: true,
@@ -30,12 +29,25 @@ const videoSchema = new Schema({
         required: true,
         trim: true
     },
-    genre: [
+    game: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'Game'
+        }
+    ],
+    genres: [
         {
             type: Schema.Types.ObjectId,
             ref: 'Genre'
         }
+    ],
+    tags: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'Tag'
+        }
     ]
+
 });
 
 const Video = mongoose.model('Video', videoSchema);
