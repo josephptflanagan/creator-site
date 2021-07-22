@@ -1,10 +1,13 @@
 import {
 	HYDRATE_GENRES,
 	UPDATE_CURRENT_GENRE,
+	HYDRATE_GAMES,
+	UPDATE_CURRENT_GAME,
+	HYDRATE_TAGS,
+	UPDATE_CURRENT_TAG,
 	UPDATE_VIDEOS
 } from '../types';
 
-// ACTION VIDEOS -- functions that return actions.  now can dispatch() from component
 export const hydrateGenres = (genres) => {
 	return {
 		type  : HYDRATE_GENRES,
@@ -16,6 +19,34 @@ export const updateCurrentGenre = (genreId) => {
 	return {
 		type   : UPDATE_CURRENT_GENRE,
 		genreId
+	};
+};
+
+export const hydrateGames = (games) => {
+	return {
+		type  : HYDRATE_GAMES,
+		games
+	};
+};
+
+export const updateCurrentGame = (gameId) => {
+	return {
+		type   : UPDATE_CURRENT_GAME,
+		gameId
+	};
+};
+
+export const hydrateGames = (tags) => {
+	return {
+		type  : HYDRATE_TAGS,
+		tags
+	};
+};
+
+export const updateCurrentGame = (tagId) => {
+	return {
+		type   : UPDATE_CURRENT_TAG,
+		tagId
 	};
 };
 

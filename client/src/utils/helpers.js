@@ -16,8 +16,8 @@ export function capitalizeFirstLetter(string) {
   
   export function idbPromise(storeName, method, object) {
     return new Promise((resolve, reject) => {
-      // open connection to the database 'buskr' with the version of 1
-      const request = window.indexedDB.open('buskr', 1);
+      // open connection to the database 'creator' with the version of 1
+      const request = window.indexedDB.open('creator', 1);
   
       // create variables to hold reference to the database, transaction (tx), and object store
       let db, tx, store;
@@ -26,7 +26,10 @@ export function capitalizeFirstLetter(string) {
       request.onupgradeneeded = function(e) {
         const db = request.result;
         // create object store for each type of data and set 'primary' key index to be the '_id' of the data
+        db.createObjectStore('videos', { keyPath: '_id' });
         db.createObjectStore('genres', { keyPath: '_id' });
+        db.createObjectStore('games', { keyPath: '_id' });        
+        db.createObjectStore('tags', { keyPath: '_id' });
         db.createObjectStore('users', { keyPath: '_id' });
       };
   

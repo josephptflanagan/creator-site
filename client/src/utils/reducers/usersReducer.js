@@ -1,4 +1,3 @@
-
 import { UPDATE_USERS } from '../types';
 
 const usersReducer = (state = [], action) => {

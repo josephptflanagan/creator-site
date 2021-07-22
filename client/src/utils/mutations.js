@@ -93,10 +93,14 @@ export const UPDATE_VIDEO_DESCRIPTION = gql`
 			_id
 			title
 			description
-            game
 			recorded
 			thumbnailUrl
             videoUrl
+			game {
+				_id
+				name
+				imgUrl
+			}
 			genres {
 				_id
 				name
@@ -115,10 +119,14 @@ export const UPDATE_VIDEO_GAME = gql`
 			_id
 			title
 			description
-            game
 			recorded
 			thumbnailUrl
             videoUrl
+			game {
+				_id
+				name
+				imgUrl
+			}
 			genres {
 				_id
 				name
@@ -137,10 +145,14 @@ export const UPDATE_VIDEO_RECORDED = gql`
 			_id
 			title
 			description
-            game
 			recorded
 			thumbnailUrl
             videoUrl
+			game {
+				_id
+				name
+				imgUrl
+			}
 			genres {
 				_id
 				name
@@ -159,10 +171,14 @@ export const UPDATE_VIDEO_THUMBNAIL = gql`
 			_id
 			title
 			description
-            game
 			recorded
 			thumbnailUrl
             videoUrl
+			game {
+				_id
+				name
+				imgUrl
+			}
 			genres {
 				_id
 				name
@@ -178,13 +194,17 @@ export const UPDATE_VIDEO_THUMBNAIL = gql`
 export const UPLOAD_VIDEO = gql`
 	mutation uploadVideo($file: Upload!) {
 		uploadVideo(file: $file) {
-            _id
+			_id
 			title
 			description
-            game
 			recorded
 			thumbnailUrl
             videoUrl
+			game {
+				_id
+				name
+				imgUrl
+			}
 			genres {
 				_id
 				name
@@ -203,10 +223,14 @@ export const UPDATE_VIDEO_GENRES = gql`
 			_id
 			title
 			description
-            game
 			recorded
 			thumbnailUrl
             videoUrl
+			game {
+				_id
+				name
+				imgUrl
+			}
 			genres {
 				_id
 				name
