@@ -9,17 +9,24 @@ const typeDefs = gql`
     type Game {
 		_id: ID
 		name: String
+		img: String
+	}
+
+	type Tag {
+		_id: ID
+		name: String
 	}
 
 	type Video {
 		_id: ID
 		title: String
 		description: String
-		game: String
+		game: Game
 		recorded: String
 		imgUrl: String
 		videoUrl: String
 		genres: [Genre]
+		tags: [Tag]
 	}
 
     type User {
@@ -54,18 +61,37 @@ const typeDefs = gql`
 		addUser(username: String!, email: String!, password: String!): Auth
         removeUser(username: String!, email: String!, password: String!): Auth
 		login(email: String!, password: String!): Auth
-		updateUserBio(bio: String!): User
+
+		addGenre(name: String!): Genre
+		removeGenre(name: String!): Genre
+
+		addGame(name: String!): Game
+		removeGame(name: String!): Game
+
+		addTag(name: String!): Tag
+		removeTag(name: String!): Tag
+
 		updateUserUsername(username: String!): User
-		updateUserEmail(email: String!): Creator
-        updateCreatorLocation(location: String!): Creator
-        uploadImg(file: Upload!): Creator
-        uploadVideo(file: Upload!): Creator
+		updateUserEmail(email: String!): User
+		updateUserBio(bio: String!): User
+        updateUserLocation(location: String!): User
+		updateUserSubscription(subscription: Boolean!): User
+		updateUserAuthority(authority: String!): User
+
+		updateVideoTitle(title:String!): Video
+		updateVideoDescription(description:String!): Video
+		updateVideoRecorded(recorded:String!): Video
+		updateVideoGame(game:ID!): Video
+		updateVideoGenres(genres:[ID]!): Video
+		updateVideoTags(tags:[ID]!): Video
+
+        uploadProfileImg(file: Upload!): User
+
+		uploadGameImg(file: Upload!): Game
+
+		uploadThumbnail(file: Upload!): Video
+        uploadVideo(file: Upload!): Video
   }
 `;
-
-// type Mutation {
-//   singleUploadStream(file: Upload!): File!
-// }
-
 
 module.exports = typeDefs;

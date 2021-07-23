@@ -9,176 +9,279 @@ const bucketName = process.env.BUCKET_NAME
 
 const resolvers = {
     Query: {
+
         genres: async () => {
             return await Genre.find()
         },
 
+        games: async () => {
+            return await Game.find()
+        },
+
+        tags: async () => {
+            return await Tag.find()
+        },
+
         // optional parameters for search, otherwise return all
-        videos: async (parent, { genres, titles }) => {
+        videos: async (parent, { genres, games, tags, titles }) => {
             const params = {}
 
             if (genres) {
-                params.vibes = vibes
+                params.genres = genres
+            }
+
+            if (games) {
+                params.games = games
+            }
+
+            if (tags) {
+                params.tags = tags
             }
 
             if (titles) {
-                params.username = {
-                    $regex: username
-                }
+                params.titles = titles
             }
 
-            return await Creator.find(params).populate('vibes').populate('songs')
+            return await Video.find(params).populate('genres').populate('games').populate('tags').populate('titles')
         }
     },
     Mutation: {
-        addCreator: async (parent, args) => {
+        addUser: async (parent, args) => {
             const { email } = args
-            const userExists = await Creator.findOne({ email })
+            const userExists = await User.findOne({ email })
             if (userExists) {
                 throw new AuthenticationError('User already exists')
             }
 
-            const creator = await Creator.create(args)
-            const token = signToken(creator)
-            const creatrDirKey = args.username + '/'
-            awsSignup(creatrDirKey)
-            return { token, creator }
+            const user = await User.create(args)
+            const token = signToken(user)
+            const userDirKey = args.username + '/'
+            awsSignup(userDirKey)
+            return { token, user }
         },
 
         login: async (parent, { email, password }) => {
-            const creator = await Creator.findOne({ email })
+            const user = await User.findOne({ email })
 
-            if (!creator) {
-                throw new AuthenticationError('Can not find creator')
+            if (!user) {
+                throw new AuthenticationError('Can not find user')
             }
 
-            const correctPw = await creator.isCorrectPassword(password)
+            const correctPw = await user.isCorrectPassword(password)
 
             if (!correctPw) {
                 throw new AuthenticationError('Sorry, incorrect credentials')
             }
 
-            const token = signToken(creator)
+            const token = signToken(user)
 
-            return { token, creator }
+            return { token, user }
         },
 
-        updateCreatorBio: async (parent, { bio }, context) => {
-            if (context.creator) {
-                return await Creator.findByIdAndUpdate(
-                    context.creator._id,
+        updateUserEmail: async (parent, { email }, context) => {
+            if (context.user) {
+                return await User.findByIdAndUpdate(
+                    context.user._id,
+                    { email },
+                    { new: true }
+                )
+            }
+
+            throw new AuthenticationError('Not logged in')
+        },
+
+        updateUserUsername: async (parent, { username }, context) => {
+            if (context.user) {
+                return await User.findByIdAndUpdate(
+                    context.user._id,
+                    { username },
+                    { new: true }
+                )
+            }
+
+            throw new AuthenticationError('Not logged in')
+        },
+
+        updateUserBio: async (parent, { bio }, context) => {
+            if (context.user) {
+                return await User.findByIdAndUpdate(
+                    context.user._id,
                     { bio },
                     { new: true }
                 )
-                    .populate('vibes')
-                    .populate('songs')
             }
 
             throw new AuthenticationError('Not logged in')
         },
 
-        updateCreatorStageName: async (parent, { stageName }, context) => {
-            if (context.creator) {
-                return await Creator.findByIdAndUpdate(
-                    context.creator._id,
-                    { stageName },
-                    { new: true }
-                )
-                    .populate('vibes')
-                    .populate('songs')
-            }
-
-            throw new AuthenticationError('Not logged in')
-        },
-
-        updateCreatorLocation: async (parent, { location }, context) => {
-            if (context.creator) {
-                return await Creator.findByIdAndUpdate(
-                    context.creator._id,
+        updateUserLocation: async (parent, { location }, context) => {
+            if (context.user) {
+                return await User.findByIdAndUpdate(
+                    context.user._id,
                     { location },
                     { new: true }
                 )
-                    .populate('vibes')
-                    .populate('songs')
             }
 
             throw new AuthenticationError('Not logged in')
         },
 
-        updateCreatorVibes: async (parent, { vibes }, context) => {
-            if (context.creator) {
-                return await Creator.findByIdAndUpdate(
-                    context.creator._id,
-                    { vibes },
+        updateUserSubscription: async (parent, { subscription }, context) => {
+            if (context.user) {
+                return await User.findByIdAndUpdate(
+                    context.user._id,
+                    { subscription },
                     { new: true }
                 )
-                    .populate('vibes')
-                    .populate('songs')
             }
 
-            throw new AuthenticationError('Not logged in CreatorTune')
+            throw new AuthenticationError('Not logged in')
         },
 
-        uploadTune: async (parent, args, context) => {
-            if (context.creator) {
+        updateUserAuthority: async (parent, { authority }, context) => {
+            if (context.user) {
+                return await User.findByIdAndUpdate(
+                    context.user._id,
+                    { authority },
+                    { new: true }
+                )
+            }
+
+            throw new AuthenticationError('Not logged in')
+        },
+
+        updateVideoTitle: async (parent, { title }, context) => {
+            if (context.video) {
+                return await User.findByIdAndUpdate(
+                    context.video._id,
+                    { title },
+                    { new: true }
+                )
+            }
+
+            throw new AuthenticationError('Not logged in')
+        },
+
+        updateVideoDescription: async (parent, { description }, context) => {
+            if (context.video) {
+                return await User.findByIdAndUpdate(
+                    context.video._id,
+                    { description },
+                    { new: true }
+                )
+            }
+
+            throw new AuthenticationError('Not logged in')
+        },
+
+        updateVideoRecorded: async (parent, { recorded }, context) => {
+            if (context.video) {
+                return await User.findByIdAndUpdate(
+                    context.video._id,
+                    { recorded },
+                    { new: true }
+                )
+            }
+
+            throw new AuthenticationError('Not logged in')
+        },
+
+        updateVideoGenres: async (parent, { genres }, context) => {
+            if (context.video) {
+                return await User.findByIdAndUpdate(
+                    context.video._id,
+                    { genres },
+                    { new: true }
+                )
+            }
+
+            throw new AuthenticationError('Not logged in')
+        },
+
+        updateVideoGame: async (parent, { game }, context) => {
+            if (context.video) {
+                return await User.findByIdAndUpdate(
+                    context.video._id,
+                    { game },
+                    { new: true }
+                )
+            }
+
+            throw new AuthenticationError('Not logged in')
+        },
+
+        updateVideoTags: async (parent, { tags }, context) => {
+            if (context.video) {
+                return await User.findByIdAndUpdate(
+                    context.video._id,
+                    { tags },
+                    { new: true }
+                )
+            }
+
+            throw new AuthenticationError('Not logged in')
+        },
+
+        uploadVideo: async (parent, args, context) => {
+            if (context.video) {
                 // configure file and send to s3 here.  get url location in response and add to db
                 // hardcode test
-                // const args = { title: 'Song Test', songUrl: 'http://test.com' };
+                // const args = { title: 'Video Test', videoUrl: 'http://test.com' };
 
                 // s3 stuff
                 const file = await args.file
                 const { createReadStream, filename, mimetype } = file
                 const fileStream = createReadStream()
 
-                const username = context.creator.username
-                const CreatrTuneKey = encodeURIComponent(username) + '/'
-                const tuneKey = CreatrTuneKey + filename
+                const username = context.user.username
+                const UserVideoKey = encodeURIComponent(username) + '/'
+                const videoKey = UserVideoKey + filename
 
                 const uploadParams = {
                     Bucket: bucketName,
                     // Key: filename,
-                    Key: tuneKey,
+                    Key: videoKey,
                     Body: fileStream
                 }
                 const result = await s3.upload(uploadParams).promise()
                 // console.log('s3 result: ', result);
 
                 const cloudfrontUrlPrefix = 'http://d28dtfvuvlqgls.cloudfront.net/'
-                const newTuneUrl = `${cloudfrontUrlPrefix}${result.Key}`
+                const newVideoUrl = `${cloudfrontUrlPrefix}${result.Key}`
 
                 const title = result.Key
-                const songUrl = newTuneUrl
-                const tuneArgs = { title, songUrl }
+                const videoUrl = newVideoUrl
+                const videoArgs = { title, videoUrl }
 
-                // instantiate new Song from s3 response data
-                const song = new Song(tuneArgs)
-                console.log('song: ', song)
+                // instantiate new Video from s3 response data
+                const video = new Video(videoArgs)
+                console.log('video: ', video)
 
-                const createTuneResponse = await Creator.findByIdAndUpdate(
-                    context.creator._id,
-                    { $push: { songs: song } },
+                const createVideoResponse = await User.findByIdAndUpdate(
+                    context.user._id,
+                    { $push: { videos: video } },
                     { new: true }
                 )
-                    .populate('vibes')
-                    .populate('songs')
+                    .populate('genres')
+                    .populate('videos')
 
-                console.log('createTuneResponse: ', createTuneResponse)
-                return createTuneResponse
+                console.log('createVideoResponse: ', createVideoResponse)
+                return createVideoResponse
             }
 
-            throw new AuthenticationError('Not logged in uploadTune')
+            throw new AuthenticationError('Not logged in uploadVideo')
         },
 
         uploadPhoto: async (parent, args, context) => {
-            if (context.creator) {
+            if (context.user) {
                 // s3 stuff
                 const file = await args.file
                 const { createReadStream, filename, mimetype } = file
                 const fileStream = createReadStream()
 
-                const username = context.creator.username
-                const CreatrPhotoKey = encodeURIComponent(username) + '/'
-                const photoKey = CreatrPhotoKey + filename
+                const username = context.user.username
+                const UserPhotoKey = encodeURIComponent(username) + '/'
+                const photoKey = UserPhotoKey + filename
 
                 const uploadParams = {
                     Bucket: bucketName,
@@ -190,13 +293,13 @@ const resolvers = {
                 const cloudfrontUrlPrefix = 'http://d28dtfvuvlqgls.cloudfront.net/'
                 const newPhotoUrl = `${cloudfrontUrlPrefix}${result.Key}`
 
-                const createPhotoResponse = await Creator.findByIdAndUpdate(
-                    context.creator._id,
+                const createPhotoResponse = await User.findByIdAndUpdate(
+                    context.user._id,
                     { imgUrl: newPhotoUrl },
                     { new: true }
                 )
-                    .populate('vibes')
-                    .populate('songs')
+                    .populate('genres')
+                    .populate('videos')
 
                 return createPhotoResponse
             }
