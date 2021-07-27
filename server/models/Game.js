@@ -9,7 +9,7 @@ const gameSchema = new Schema({
 		required : true,
 		trim     : true
 	},
-	imgUrl : {
+	gameImgUrl : {
 		type     : String,
 		required : true,
 		trim     : true

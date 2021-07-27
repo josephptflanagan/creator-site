@@ -5,7 +5,7 @@ export const QUERY_VIDEO_GAMES = gql`
 		game {
 			_id
 			name
-			imgUrl
+			gameImgUrl
 		}
 	}
 `;
@@ -35,7 +35,7 @@ export const QUERY_VIDEOS = gql`
 			title
 			description
 			recorded
-			thumbnailUrl
+			videoThumbnailUrl
             videoUrl
 			game {
 				_id
@@ -50,6 +50,19 @@ export const QUERY_VIDEOS = gql`
 				_id
 				name
 			}
+		}
+	}
+`;
+
+export const QUERY_USERS = gql`
+	{
+		users {
+			_id
+			username
+			email
+			profilePicUrl
+			location
+			bio
 		}
 	}
 `;

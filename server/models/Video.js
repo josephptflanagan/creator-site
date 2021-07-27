@@ -19,7 +19,7 @@ const videoSchema = new Schema({
         required: true,
         trim: true
     },
-    thumbnailUrl: {
+    videoThumbnailUrl: {
         type: String,
         required: true,
         trim: true

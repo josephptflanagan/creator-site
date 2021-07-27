@@ -9,7 +9,7 @@ const typeDefs = gql`
     type Game {
 		_id: ID
 		name: String
-		img: String
+		gameImgUrl: String
 	}
 
 	type Tag {
@@ -23,7 +23,7 @@ const typeDefs = gql`
 		description: String
 		game: Game
 		recorded: String
-		imgUrl: String
+		thumbnailUrl: String
 		videoUrl: String
 		genres: [Genre]
 		tags: [Tag]
@@ -33,7 +33,7 @@ const typeDefs = gql`
         _id: ID
         username: String
         email: String
-        imgUrl: String
+        profilePicUrl: String
         bio: String
         location: String
         subscrition: Boolean
@@ -85,11 +85,11 @@ const typeDefs = gql`
 		updateVideoGenres(genres:[ID]!): Video
 		updateVideoTags(tags:[ID]!): Video
 
-        uploadProfileImg(file: Upload!): User
+        uploadProfilePic(file: Upload!): User
 
 		uploadGameImg(file: Upload!): Game
 
-		uploadThumbnail(file: Upload!): Video
+		uploadVideoThumbnail(file: Upload!): Video
         uploadVideo(file: Upload!): Video
   }
 `;

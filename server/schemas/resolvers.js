@@ -263,6 +263,8 @@ const resolvers = {
                     { new: true }
                 )
                     .populate('genres')
+                    .populate('tags')
+                    .populate('games')
                     .populate('videos')
 
                 console.log('createVideoResponse: ', createVideoResponse)
@@ -272,7 +274,7 @@ const resolvers = {
             throw new AuthenticationError('Not logged in uploadVideo')
         },
 
-        uploadPhoto: async (parent, args, context) => {
+        uploadProfilePic: async (parent, args, context) => {
             if (context.user) {
                 // s3 stuff
                 const file = await args.file
@@ -280,31 +282,98 @@ const resolvers = {
                 const fileStream = createReadStream()
 
                 const username = context.user.username
-                const UserPhotoKey = encodeURIComponent(username) + '/'
-                const photoKey = UserPhotoKey + filename
+                const UserProfilePicKey = encodeURIComponent(username) + '/'
+                const profilePicKey = UserProfilePicKey + filename
 
                 const uploadParams = {
                     Bucket: bucketName,
-                    Key: photoKey,
+                    Key: profilePicKey,
                     Body: fileStream
                 }
                 const result = await s3.upload(uploadParams).promise()
 
                 const cloudfrontUrlPrefix = 'http://d28dtfvuvlqgls.cloudfront.net/'
-                const newPhotoUrl = `${cloudfrontUrlPrefix}${result.Key}`
+                const newProfilePicUrl = `${cloudfrontUrlPrefix}${result.Key}`
 
-                const createPhotoResponse = await User.findByIdAndUpdate(
+                const createProfilePicResponse = await User.findByIdAndUpdate(
                     context.user._id,
-                    { imgUrl: newPhotoUrl },
+                    { profilePicUrl: newProfilePicUrl },
                     { new: true }
                 )
-                    .populate('genres')
-                    .populate('videos')
+                    .populate('users')
 
-                return createPhotoResponse
+                return createProfilePicResponse
             }
 
-            throw new AuthenticationError('Not logged in uploadPhoto')
+            throw new AuthenticationError('Not logged in')
+        },
+
+        uploadVideoThumbnail: async (parent, args, context) => {
+            if (context.video) {
+                // s3 stuff
+                const file = await args.file
+                const { createReadStream, filename, mimetype } = file
+                const fileStream = createReadStream()
+
+                const title = context.video.title
+                const UserVideoThumbnailKey = encodeURIComponent(title) + '/'
+                const videoThumbnailKey = UserVideoThumbnailKey + filename
+
+                const uploadParams = {
+                    Bucket: bucketName,
+                    Key: videoThumbnailKey,
+                    Body: fileStream
+                }
+                const result = await s3.upload(uploadParams).promise()
+
+                const cloudfrontUrlPrefix = 'http://d28dtfvuvlqgls.cloudfront.net/'
+                const newVideoThumbnailUrl = `${cloudfrontUrlPrefix}${result.Key}`
+
+                const createVideoThumbnailResponse = await User.findByIdAndUpdate(
+                    context.user._id,
+                    { videoThumbnailUrl: newVideoThumbnailUrl },
+                    { new: true }
+                )
+                    .populate('videos')
+
+                return createVideoThumbnailResponse
+            }
+
+            throw new AuthenticationError('Not logged in')
+        },
+
+        uploadGameImg: async (parent, args, context) => {
+            if (context.game) {
+                // s3 stuff
+                const file = await args.file
+                const { createReadStream, filename, mimetype } = file
+                const fileStream = createReadStream()
+
+                const name = context.game.name
+                const UserGameImgKey = encodeURIComponent(name) + '/'
+                const gameImgKey = UserGameImgKey + filename
+
+                const uploadParams = {
+                    Bucket: bucketName,
+                    Key: gameImgKey,
+                    Body: fileStream
+                }
+                const result = await s3.upload(uploadParams).promise()
+
+                const cloudfrontUrlPrefix = 'http://d28dtfvuvlqgls.cloudfront.net/'
+                const newGameImgUrl = `${cloudfrontUrlPrefix}${result.Key}`
+
+                const createGameImgResponse = await User.findByIdAndUpdate(
+                    context.user._id,
+                    { gameImgUrl: newGameImgUrl },
+                    { new: true }
+                )
+                    .populate('games')
+
+                return createGameImgResponse
+            }
+
+            throw new AuthenticationError('Not logged in')
         }
     }
 }

@@ -28,7 +28,7 @@ export const UPDATE_USER_USERNAME = gql`
 			_id
 			username
 			email
-			imgUrl
+			profilePicUrl
 			location
 			bio
 		}
@@ -41,7 +41,7 @@ export const UPDATE_USER_EMAIL = gql`
 			_id
 			username
 			email
-			imgUrl
+			profilePicUrl
 			location
 			bio
 		}
@@ -54,7 +54,7 @@ export const UPDATE_USER_BIO = gql`
 			_id
 			username
 			email
-			imgUrl
+			profilePicUrl
 			location
 			bio
 		}
@@ -67,7 +67,7 @@ export const UPDATE_USER_LOCATION = gql`
 			_id
 			username
 			email
-			imgUrl
+			profilePicUrl
 			location
 			bio
 		}
@@ -80,7 +80,7 @@ export const UPDATE_USER_IMAGE = gql`
 			_id
 			username
 			email
-			imgUrl
+			profilePicUrl
 			location
 			bio
 		}
@@ -94,7 +94,7 @@ export const UPDATE_VIDEO_DESCRIPTION = gql`
 			title
 			description
 			recorded
-			thumbnailUrl
+			videoThumbnailUrl
             videoUrl
 			game {
 				_id
@@ -120,7 +120,7 @@ export const UPDATE_VIDEO_GAME = gql`
 			title
 			description
 			recorded
-			thumbnailUrl
+			videoThumbnailUrl
             videoUrl
 			game {
 				_id
@@ -146,7 +146,7 @@ export const UPDATE_VIDEO_RECORDED = gql`
 			title
 			description
 			recorded
-			thumbnailUrl
+			videoThumbnailUrl
             videoUrl
 			game {
 				_id
@@ -172,7 +172,7 @@ export const UPDATE_VIDEO_THUMBNAIL = gql`
 			title
 			description
 			recorded
-			thumbnailUrl
+			videoThumbnailUrl
             videoUrl
 			game {
 				_id
@@ -198,7 +198,7 @@ export const UPLOAD_VIDEO = gql`
 			title
 			description
 			recorded
-			thumbnailUrl
+			videoThumbnailUrl
             videoUrl
 			game {
 				_id
@@ -224,7 +224,7 @@ export const UPDATE_VIDEO_GENRES = gql`
 			title
 			description
 			recorded
-			thumbnailUrl
+			videoThumbnailUrl
             videoUrl
 			game {
 				_id
