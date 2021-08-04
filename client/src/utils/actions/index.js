@@ -5,7 +5,8 @@ import {
 	UPDATE_CURRENT_GAME,
 	HYDRATE_TAGS,
 	UPDATE_CURRENT_TAG,
-	UPDATE_VIDEOS
+	UPDATE_VIDEOS,
+	UPDATE_USERS
 } from '../types';
 
 export const hydrateGenres = (genres) => {
@@ -54,5 +55,12 @@ export const updateVideos = (videos) => {
 	return {
 		type     : UPDATE_VIDEOS,
 		videos
+	};
+};
+
+export const updateUsers = (users) => {
+	return {
+		type   : UPDATE_USERS,
+		users
 	};
 };

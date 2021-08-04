@@ -99,9 +99,9 @@ const EditGenres = ({ curGenres }) => {
 									<div key={genre._id} className="mb-3">
 										<Form.Check
                       // type="checkbox"
-                      disabled={genre.name === 'All'}
-											name="updatedGenres"
-											label={genre.name}
+                      disabled={genre.genreName === 'All'}
+											genreName="updatedGenres"
+											label={genre.genreName}
 											value={genre._id}
 											defaultChecked={curGenresIds?.includes(genre._id)}
 										/>

@@ -23,7 +23,7 @@ const typeDefs = gql`
 		description: String
 		game: Game
 		recorded: String
-		thumbnailUrl: String
+		videoThumbnailUrl: String
 		videoUrl: String
 		genres: [Genre]
 		tags: [Tag]
