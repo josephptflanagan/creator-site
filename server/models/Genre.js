@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const genreSchema = new Schema({
-	name : {
+	genreName : {
 		type     : String,
 		required : true,
 		trim     : true

@@ -23,7 +23,7 @@ const resolvers = {
         },
 
         // optional parameters for search, otherwise return all
-        videos: async (parent, { genres, games, tags, titles }) => {
+        videos: async (parent, { genres, games, tags, videoTitles }) => {
             const params = {}
 
             if (genres) {
@@ -38,11 +38,11 @@ const resolvers = {
                 params.tags = tags
             }
 
-            if (titles) {
-                params.titles = titles
+            if (videoTitles) {
+                params.videoTitles = videoTitles
             }
 
-            return await Video.find(params).populate('genres').populate('games').populate('tags').populate('titles')
+            return await Video.find(params).populate('genres').populate('games').populate('tags').populate('videoTitles')
         }
     },
     Mutation: {
@@ -150,11 +150,11 @@ const resolvers = {
             throw new AuthenticationError('Not logged in')
         },
 
-        updateVideoTitle: async (parent, { title }, context) => {
+        updateVideoTitle: async (parent, { videoTitle }, context) => {
             if (context.video) {
                 return await User.findByIdAndUpdate(
                     context.video._id,
-                    { title },
+                    { videoTitle },
                     { new: true }
                 )
             }
@@ -226,7 +226,7 @@ const resolvers = {
             if (context.video) {
                 // configure file and send to s3 here.  get url location in response and add to db
                 // hardcode test
-                // const args = { title: 'Video Test', videoUrl: 'http://test.com' };
+                // const args = { videoTitle: 'Video Test', videoUrl: 'http://test.com' };
 
                 // s3 stuff
                 const file = await args.file
@@ -249,9 +249,9 @@ const resolvers = {
                 const cloudfrontUrlPrefix = 'http://d28dtfvuvlqgls.cloudfront.net/'
                 const newVideoUrl = `${cloudfrontUrlPrefix}${result.Key}`
 
-                const title = result.Key
+                const videoTitle = result.Key
                 const videoUrl = newVideoUrl
-                const videoArgs = { title, videoUrl }
+                const videoArgs = { videoTitle, videoUrl }
 
                 // instantiate new Video from s3 response data
                 const video = new Video(videoArgs)
@@ -315,8 +315,8 @@ const resolvers = {
                 const { createReadStream, filename, mimetype } = file
                 const fileStream = createReadStream()
 
-                const title = context.video.title
-                const UserVideoThumbnailKey = encodeURIComponent(title) + '/'
+                const videoTitle = context.video.videoTitle
+                const UserVideoThumbnailKey = encodeURIComponent(videoTitle) + '/'
                 const videoThumbnailKey = UserVideoThumbnailKey + filename
 
                 const uploadParams = {

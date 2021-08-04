@@ -3,23 +3,23 @@ const { gql } = require('apollo-server-express');
 const typeDefs = gql`
 	type Genre {
 		_id: ID
-		name: String
+		genreName: String
 	}
 
     type Game {
 		_id: ID
-		name: String
+		gameTitle: String
 		gameImgUrl: String
 	}
 
 	type Tag {
 		_id: ID
-		name: String
+		tagName: String
 	}
 
 	type Video {
 		_id: ID
-		title: String
+		videoTitle: String
 		description: String
 		game: Game
 		recorded: String
@@ -62,14 +62,14 @@ const typeDefs = gql`
         removeUser(username: String!, email: String!, password: String!): Auth
 		login(email: String!, password: String!): Auth
 
-		addGenre(name: String!): Genre
-		removeGenre(name: String!): Genre
+		addGenre(genreName: String!): Genre
+		removeGenre(genreName: String!): Genre
 
-		addGame(name: String!): Game
-		removeGame(name: String!): Game
+		addGame(gameTitle: String!): Game
+		removeGame(gameTitle: String!): Game
 
-		addTag(name: String!): Tag
-		removeTag(name: String!): Tag
+		addTag(tagName: String!): Tag
+		removeTag(tagName: String!): Tag
 
 		updateUserUsername(username: String!): User
 		updateUserEmail(email: String!): User
@@ -78,7 +78,7 @@ const typeDefs = gql`
 		updateUserSubscription(subscription: Boolean!): User
 		updateUserAuthority(authority: String!): User
 
-		updateVideoTitle(title:String!): Video
+		updateVideoTitle(videoTitle:String!): Video
 		updateVideoDescription(description:String!): Video
 		updateVideoRecorded(recorded:String!): Video
 		updateVideoGame(game:ID!): Video

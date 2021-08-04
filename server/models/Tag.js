@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const tagSchema = new Schema({
-	name : {
+	tagName : {
 		type     : String,
 		required : true,
 		trim     : true
