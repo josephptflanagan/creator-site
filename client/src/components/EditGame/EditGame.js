@@ -67,7 +67,7 @@ const EditGame = ({ curGame }) => {
 				<Modal.Body>
 					<Form onSubmit={handleFormSubmit}>
 						<FormControl
-							name="game"
+							gameTitle="game"
 							aria-label="With input"
 							onChange={setGame}
 							value={game || ''}

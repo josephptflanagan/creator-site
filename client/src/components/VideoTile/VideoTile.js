@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import './VideoTile.css';
 
-const VideoTile = ({ _id, title, ThumbnailUrl }) => {
+const VideoTile = ({ _id, videoTitle, ThumbnailUrl }) => {
 	let tileStyle = {
 		backgroundImage    : 'url(' + ThumbnailUrl + ')',
 		position           : 'relative',
@@ -14,7 +14,7 @@ const VideoTile = ({ _id, title, ThumbnailUrl }) => {
 	return (
 		<Link to={`/profile/${_id}`} className="VideoTile">
 			<div className="VideoTile-tile m-2" style={tileStyle}>
-				<h3>{title}</h3>
+				<h3>{videoTitle}</h3>
 			</div>
 		</Link>
 	);

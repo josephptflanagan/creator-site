@@ -28,7 +28,7 @@ import { BiPlay } from 'react-icons/bi'
 import './VideoDash.css'
 
 const VideoDash = () => {
-	const titleDefault = 'No title yet added'
+	const videoTitleDefault = 'No title yet added'
 	const descriptionDefault = 'No description yet added'
 	const tagsDefault = 'No tags yet added'
 	const genresDefault = 'No genres yet added'
@@ -146,13 +146,13 @@ const VideoDash = () => {
 
 												)}
 
-											{curVideo.title ? (
+											{curVideo.videoTitle ? (
 
-												<p>{title}</p>
+												<p>{videoTitle}</p>
 
 											) : (
 
-													<p>{titleDefault}</p>
+													<p>{videoTitleDefault}</p>
 
 												)}
 
@@ -191,7 +191,7 @@ const VideoDash = () => {
 
 											{curVideo.game ? (
 
-												<p>{game.name}</p>,
+												<p>{game.gameTitle}</p>,
 												<img src={game.imgUrl}></img>
 
 											) : (
@@ -210,7 +210,7 @@ const VideoDash = () => {
 															key={genre._id}
 															className='ctrst-genre-btn-static d-inline-block text-center btn-sm m-1 text-white'
 														>
-															{genre.name}
+															{genre.genreName}
 														</span>
 
 													))}

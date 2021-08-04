@@ -4,7 +4,7 @@ export const QUERY_VIDEO_GAMES = gql`
 	{
 		game {
 			_id
-			name
+			gameTitle
 			gameImgUrl
 		}
 	}
@@ -14,7 +14,7 @@ export const QUERY_VIDEO_GENRES = gql`
 	{
 		genres {
 			_id
-			name
+			genreName
 		}
 	}
 `;
@@ -23,7 +23,7 @@ export const QUERY_VIDEO_TAGS = gql`
 	{
 		tags {
 			_id
-			name
+			tagName
 		}
 	}
 `;
@@ -32,23 +32,23 @@ export const QUERY_VIDEOS = gql`
 	{
 		videos {
 			_id
-			title
+			videoTitle
 			description
 			recorded
 			videoThumbnailUrl
             videoUrl
 			game {
 				_id
-				name
+				gameTitle
 				imgUrl
 			}
 			genres {
 				_id
-				name
+				genreName
 			}
 			tags {
 				_id
-				name
+				tagName
 			}
 		}
 	}

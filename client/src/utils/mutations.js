@@ -22,6 +22,39 @@ export const ADD_USER = gql`
 	}
 `;
 
+export const ADD_VIDEO = gql`
+	mutation addVideo($file: Upload!) {
+		addVideo(file: $file) {
+			video {
+				_id
+			}
+		}
+	}
+	mutation updateVideoDescription($description: [ID]!) {
+		updateVideoDescription(description: $description) {
+			_id
+			videoTitle
+			description
+			recorded
+			videoThumbnailUrl
+            videoUrl
+			game {
+				_id
+				gameTitle
+				gameImgUrl
+			}
+			genres {
+				_id
+				genreName
+			}
+			tags {
+				_id
+				tagName
+			}
+		}
+	}
+`;
+
 export const UPDATE_USER_USERNAME = gql`
 	mutation updateUserUsername($username: String!) {
 		updateUserUsername(username: $username) {
@@ -91,23 +124,23 @@ export const UPDATE_VIDEO_DESCRIPTION = gql`
 	mutation updateVideoDescription($description: [ID]!) {
 		updateVideoDescription(description: $description) {
 			_id
-			title
+			videoTitle
 			description
 			recorded
 			videoThumbnailUrl
             videoUrl
 			game {
 				_id
-				name
+				gameTitle
 				imgUrl
 			}
 			genres {
 				_id
-				name
+				genreName
 			}
 			tags {
 				_id
-				name
+				tagName
 			}
 		}
 	}
@@ -117,23 +150,23 @@ export const UPDATE_VIDEO_GAME = gql`
 	mutation updateVideoGame($game: [ID]!) {
 		updateVideoGame(game: $game) {
 			_id
-			title
+			videoTitle
 			description
 			recorded
 			videoThumbnailUrl
             videoUrl
 			game {
 				_id
-				name
+				gameTitle
 				imgUrl
 			}
 			genres {
 				_id
-				name
+				genreName
 			}
 			tags {
 				_id
-				name
+				tagName
 			}
 		}
 	}
@@ -143,23 +176,23 @@ export const UPDATE_VIDEO_RECORDED = gql`
 	mutation updateVideoRecorded($recorded: [ID]!) {
 		updateVideoRecorded(recorded: $recorded) {
 			_id
-			title
+			videoTitle
 			description
 			recorded
 			videoThumbnailUrl
             videoUrl
 			game {
 				_id
-				name
+				gameTitle
 				imgUrl
 			}
 			genres {
 				_id
-				name
+				genreName
 			}
 			tags {
 				_id
-				name
+				tagName
 			}
 		}
 	}
@@ -169,23 +202,23 @@ export const UPDATE_VIDEO_THUMBNAIL = gql`
 	mutation updateVideoThumbnail($file: Upload!) {
 		updateVideoThumbnail(file: $file) {
 			_id
-			title
+			videoTitle
 			description
 			recorded
 			videoThumbnailUrl
             videoUrl
 			game {
 				_id
-				name
+				gameTitle
 				imgUrl
 			}
 			genres {
 				_id
-				name
+				genreName
 			}
 			tags {
 				_id
-				name
+				tagName
 			}
 		}
 	}
@@ -195,23 +228,23 @@ export const UPLOAD_VIDEO = gql`
 	mutation uploadVideo($file: Upload!) {
 		uploadVideo(file: $file) {
 			_id
-			title
+			videoTitle
 			description
 			recorded
 			videoThumbnailUrl
             videoUrl
 			game {
 				_id
-				name
+				gameTitle
 				imgUrl
 			}
 			genres {
 				_id
-				name
+				genreName
 			}
 			tags {
 				_id
-				name
+				tagName
 			}
 		}
 	}
@@ -221,23 +254,23 @@ export const UPDATE_VIDEO_GENRES = gql`
 	mutation updateVideoGenres($genres: [ID]!) {
 		updateVideoGenres(genres: $genres) {
 			_id
-			title
+			videoTitle
 			description
 			recorded
 			videoThumbnailUrl
             videoUrl
 			game {
 				_id
-				name
+				gameTitle
 				imgUrl
 			}
 			genres {
 				_id
-				name
+				genreName
 			}
 			tags {
 				_id
-				name
+				tagName
 			}
 		}
 	}
