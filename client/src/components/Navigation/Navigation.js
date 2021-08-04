@@ -30,7 +30,7 @@ const Navigation = () => {
 			return (
 				<>
 					<NavLink exact to="/about" activeStyle={activeStyle} className="mr-3">
-						About Us
+						About Me
 					</NavLink>
 					<NavLink exact to="/login" activeStyle={activeStyle} className="mr-3">
 						Login
