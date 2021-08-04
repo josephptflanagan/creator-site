@@ -1,0 +1,11 @@
+/* NAVBAR */
+.Navigation {
+	/* being overridden by * selector in index.css */
+	background-color: #7e7e81;
+	color: var(--secondary);
+}
+
+.Navigation-brand-bskr {
+	font-family: Monoton;
+	font-size: 2.4rem;
+}

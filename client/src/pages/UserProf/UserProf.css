@@ -1,0 +1,24 @@
+/* USER PROFILE */
+.UserProf h1 {
+	font-family: Monoton;
+	font-size: 2.8rem;
+}
+
+.UserProf .card {
+	border: 0;
+}
+
+.UserProf svg:hover {
+	cursor: pointer;
+	opacity: .5;
+}
+
+.donate-text {
+	font-size: 12px;
+}
+
+/* need to do this since we are using .btn class to style...should refactor */
+/* .UserProf span:hover {
+  cursor: default !important;
+}
+ */

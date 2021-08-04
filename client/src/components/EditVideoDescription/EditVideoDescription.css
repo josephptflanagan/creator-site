@@ -1,0 +1,13 @@
+.EditVideoDesc .modal-title, .modal-body {
+    color: black;
+}
+
+.desc-span {
+    font-size: 12px;
+}
+
+@media only screen and (max-width: 1048px) {
+	.EditVideoDesc-Btn {
+		width: 75% !important;
+	}
+}

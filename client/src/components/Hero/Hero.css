@@ -1,0 +1,15 @@
+  
+.Hero {
+	height: 55vh;
+	padding: 0;
+	overflow: hidden;
+	display: flex;
+	justify-content: left;
+	align-items: center;
+	margin-bottom: 10px;
+	background: url(/images/heroBackground.jpg);
+	position: relative;
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+}

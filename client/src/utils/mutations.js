@@ -120,6 +120,32 @@ export const UPDATE_USER_IMAGE = gql`
 	}
 `;
 
+export const UPDATE_VIDEO_TITLE = gql`
+	mutation updateVideoDescription($videoTitle: [ID]!) {
+		updateVideoTitle(videoTitle: $videoTitle) {
+			_id
+			videoTitle
+			description
+			recorded
+			videoThumbnailUrl
+            videoUrl
+			game {
+				_id
+				gameTitle
+				imgUrl
+			}
+			genres {
+				_id
+				genreName
+			}
+			tags {
+				_id
+				tagName
+			}
+		}
+	}
+`;
+
 export const UPDATE_VIDEO_DESCRIPTION = gql`
 	mutation updateVideoDescription($description: [ID]!) {
 		updateVideoDescription(description: $description) {
@@ -198,7 +224,7 @@ export const UPDATE_VIDEO_RECORDED = gql`
 	}
 `;
 
-export const UPDATE_VIDEO_THUMBNAIL = gql`
+export const UPLOAD_VIDEO_THUMBNAIL_URL = gql`
 	mutation updateVideoThumbnail($file: Upload!) {
 		updateVideoThumbnail(file: $file) {
 			_id
@@ -253,6 +279,32 @@ export const UPLOAD_VIDEO = gql`
 export const UPDATE_VIDEO_GENRES = gql`
 	mutation updateVideoGenres($genres: [ID]!) {
 		updateVideoGenres(genres: $genres) {
+			_id
+			videoTitle
+			description
+			recorded
+			videoThumbnailUrl
+            videoUrl
+			game {
+				_id
+				gameTitle
+				imgUrl
+			}
+			genres {
+				_id
+				genreName
+			}
+			tags {
+				_id
+				tagName
+			}
+		}
+	}
+`;
+
+export const UPDATE_VIDEO_TAGS = gql`
+	mutation updateVideoTags($tags: [ID]!) {
+		updateVideoTags(tags: $tags) {
 			_id
 			videoTitle
 			description

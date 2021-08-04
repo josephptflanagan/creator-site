@@ -1,31 +1,25 @@
-{/* THIS IS ALMOST ALL WRONG, NEED TO THINK ABOUT SITE STRUCTURE*/ }
-
 import React, { useState, useEffect, useRef } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useParams } from 'react-router-dom'
-import { useQuery } from '../../components/EditVideo/node_modules/@apollo/react-hooks'
-
+import { useQuery } from '@apollo/react-hooks'
 import { QUERY_VIDEOS } from '../../utils/queries'
 import { updateVideos } from '../../utils/actions'
 import { idbPromise } from '../../utils/helpers'
-
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Card from 'react-bootstrap/Card'
-import Spinner from '../../components/EditVideo/node_modules/react-bootstrap/Spinner'
-
-import EditDescription from '../../components/EditDescription/EditDescription'
-import EditGame from '../../components/EditGame/EditGame'
-import EditGenres from '../../components/EditGenres/EditGenres'
-import EditRecorded from '../../components/EditRecorded/EditRecorded'
-import EditTags from '../../components/EditTags/EditTags'
-import EditThumbnailUrl from '../../components/EditThumbnailUrl/EditThumbnailUrl'
+import Spinner from 'react-bootstrap/Spinner'
+import EditVideoTitle from '../../components/EditVideoTitle/EditVideoTitle'
+import EditVideoDescription from '../../components/EditVideoDescription/EditVideoDescription'
+import EditVideoGame from '../../components/EditVideoGame/EditVideoGame'
+import EditVideoGenres from '../../components/EditVideoGenres/EditVideoGenres'
+import EditVideoRecorded from '../../components/EditVideoRecorded/EditVideoRecorded'
+import EditVideoTags from '../../components/EditVideoTags/EditVideoTags'
+import EditVideoThumbnailUrl from '../../components/EditVideoThumbnailUrl/EditVideoThumbnailUrl'
 import EditVideo from '../../components/EditVideo/EditVideo'
 import NoThumbnail from '../../assets/noThumbnail.jpg'
-
 import { BiPlay } from 'react-icons/bi'
-
-import './VideoDash.css'
+import './UploadDash.css'
 
 const VideoDash = () => {
 	const videoTitleDefault = 'No title yet added'
@@ -108,8 +102,8 @@ const VideoDash = () => {
 												<EditVideoTitle />
 												<EditVideoDescription />
 												<EditVideoTags />
-												<EditThumbnailUrl />
-												<EditVideoGenre />
+												<EditVideoThumbnailUrl />
+												<EditVideoGenres />
 												<EditVideoGame />
 												<EditVideoRecorded />
 											</Card.Body>
@@ -148,7 +142,7 @@ const VideoDash = () => {
 
 											{curVideo.videoTitle ? (
 
-												<p>{videoTitle}</p>
+												<p>{curVideo.videoTitle}</p>
 
 											) : (
 
@@ -181,7 +175,7 @@ const VideoDash = () => {
 
 											{curVideo.description ? (
 
-												<p>{description}</p>
+												<p>{curVideo.description}</p>
 
 											) : (
 
@@ -191,8 +185,8 @@ const VideoDash = () => {
 
 											{curVideo.game ? (
 
-												<p>{game.gameTitle}</p>,
-												<img src={game.imgUrl}></img>
+												<p>{curVideo.game.gameTitle}</p>,
+												<img src={curVideo.game.gameImgUrl}></img>
 
 											) : (
 

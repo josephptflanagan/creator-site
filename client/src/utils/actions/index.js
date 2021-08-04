@@ -37,14 +37,14 @@ export const updateCurrentGame = (gameId) => {
 	};
 };
 
-export const hydrateGames = (tags) => {
+export const hydrateTags = (tags) => {
 	return {
 		type  : HYDRATE_TAGS,
 		tags
 	};
 };
 
-export const updateCurrentGame = (tagId) => {
+export const updateCurrentTag = (tagId) => {
 	return {
 		type   : UPDATE_CURRENT_TAG,
 		tagId

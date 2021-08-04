@@ -4,21 +4,21 @@ import './Home.css';
 
 import Hero from '../../components/Hero/Hero';
 import SidebarTop from '../../components/SidebarTop/SidebarTop';
-import CreatrGrid from '../../components/CreatrGrid/CreatrGrid';
+import VideoGrid from '../../components/VideoGrid/VideoGrid';
 import Footer from '../../components/Footer/Footer';
 
 const Home = () => {
     return (
-        {/*    <>
+            <>
 			<Hero />
 			<Row>
 				<SidebarTop />
 			</Row>
 			<Row>
-				<CreatrGrid />
+				<VideoGrid />
 			</Row>
 			<Footer />
-        </>    */}
+        </>    
     );
 };
 

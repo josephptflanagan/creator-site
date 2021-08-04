@@ -1,0 +1,13 @@
+.EditUserLocation .modal-title, .modal-body {
+    color: black;
+}
+
+.city-span {
+    font-size: 12px;
+}
+
+@media only screen and (max-width: 1048px) {
+	.EditUserLocation-Btn {
+		width: 75% !important;
+	}
+}
